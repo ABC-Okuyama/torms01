@@ -1,8 +1,8 @@
 import tkinter as tk
 from LayeredFrame import LayeredFrame
 from MyFrame01 import MyFrama01
-# from MyFrame02 import MyFrama02
-# from MyFrame03 import MyFrame03
+from MyFrame02 import MyFrama02
+from MyFrame03 import MyFrame03
 
 
 # アプリケーションクラスだよ
@@ -39,25 +39,25 @@ class Application(tk.Frame):
         # 第1引数:仮想イベントと 第2引数:処理  を結びつける(bindする)
         page1.bind("<<Page_Menu>>", layered_frame.toPage("page2"))
         page1.bind("<<Page_Customer>>", layered_frame.toPage("page3"))
-        page1.bind("<<Page_Customer>>", layered_frame.toPage("page4"))
+        page1.bind("<<Page_Reservation>>", layered_frame.toPage("page4"))
         page1.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page1を 追加
         layered_frame.addPage(page1, "page1")
 
         # # page2 は MyFrame02クラスのインスタンスを作る
-        # page2 = MyFrama02(layered_frame)
-        # page2.bind("<<Page_Back>>", layered_frame.toPage("page1"))
-        #
-        # # frameに page2を 追加
-        # layered_frame.addPage(page2, "page2")
-        #
-        # # page3 は MyFrame03クラスのインスタンスを作る
-        # page3 = MyFrame03(layered_frame)
-        # page3.bind("<<Page_Back>>", layered_frame.toPage("page1"))
-        #
-        # # frameに page3を 追加
-        # layered_frame.addPage(page3, "page3")
+        page2 = MyFrama02(layered_frame)
+        page2.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
+
+        # frameに page2を 追加
+        layered_frame.addPage(page2, "page2")
+
+        # page3 は MyFrame03クラスのインスタンスを作る
+        page3 = MyFrame03(layered_frame)
+        page3.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
+
+        # frameに page3を 追加
+        layered_frame.addPage(page3, "page3")
 
 
     # pageが変わったら呼ばれる
