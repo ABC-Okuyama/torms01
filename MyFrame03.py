@@ -4,34 +4,66 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkcalendar import DateEntry
 
-class MyFrama02(ttk.Frame):
+
+class MyFrama03(ttk.Frame):
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
 
         # グリッドを使ってレイアウト
         # self.grid_rowconfigure(0, weight=1)
-
         # self.grid_columnconfigure(0, weight=1)
 
-        calendar = DateEntry()
-        # ラベルとテキスト入力を作る
-        label1 = ttk.Label(self,text="ユーザ名")
-        # 入力した値を受け取る変数
-        self.username = tk.StringVar()
-        self.username_entry = ttk.Entry(
-            self,
-            textvariable=self.username,
-            width=30)
+        # 下地のframe: frBoxを作る
+        self.frBox1 = tk.Frame(self)
+        # ラベルを作る
+        label1 = ttk.Label(self.frBox1,text="日付 ",width=8)
+        # 日付ピッカーを作る
+        self.calendar = DateEntry(self.frBox1, locale='ja_JP.UTF-8', date_pattern='y/mm/dd', width=14)
+
+        # 下地のframeにcalendarを載せる
+        label1.pack(anchor=tk.W,side=tk.LEFT, fill=tk.NONE)
+        self.calendar.pack(side=tk.LEFT, fill=tk.BOTH)
+
+        # 下地のframe: frBoxを作る
+        self.frBox2 = tk.Frame(self)
+
+        # TimePickerを作る (スピンボックス×２)
+        # ラベルを作る
+        label2 = ttk.Label(self.frBox2,text="時刻 ",width=8)
+        # スピンボックス (時)
+        self.hour = tk.StringVar()
+        self.hour.set('12')
+        self.hour_spinEntry = ttk.Spinbox(
+            self.frBox2,
+            format='%02.0f',
+            state='readonly',
+            textvariable=self.hour,
+            from_=0,
+            to=23,
+            increment=1.0,
+            width=6,
+            command=lambda: print(self.hour.get()))
+
+        # スピンボックス (分)
+        self.minute = tk.StringVar()
+        self.minute.set('00')
+        self.minute_spinEntry = ttk.Spinbox(
+            self.frBox2,
+            format='%02.0f',
+            state='readonly',
+            textvariable=self.minute,
+            from_=0,
+            to=59,
+            increment=1.0,
+            width=6,
+            command=lambda: print(self.minute.get()))
+
+        # 下地のframeにTimePickerを載せる
+        label2.pack(anchor=tk.W,side=tk.LEFT, fill=tk.NONE)
+        self.hour_spinEntry.pack(anchor=tk.W,side=tk.LEFT, fill=tk.BOTH)
+        self.minute_spinEntry.pack(anchor=tk.W,side=tk.LEFT, fill=tk.BOTH)
 
         # ラベルとテキスト入力を作る
-        label2 = ttk.Label(self,text="パスワード")
-        # 入力した値を受け取る変数
-        self.password = tk.StringVar()
-        self.password_entry = ttk.Entry(
-            self,
-            textvariable=self.password,
-            width=30)
-
         # ボタンを作る
         submit_button = ttk.Button(self,text="送信", width=20)
         exit_button = ttk.Button(self, text="アプリ終了", width=20)
@@ -41,18 +73,18 @@ class MyFrama02(ttk.Frame):
         # 任意の名前の仮想イベントを作成しておく
         exit_button["command"] = lambda: self.event_generate("<<Page_Exit>>")
 
-        # ラベルとテキスト入力を配置
-        label1.grid(row=0, column=0, sticky=tk.E)
-        self.username_entry.grid(row=0,column=1)
-        label2.grid(row=1, column=0, sticky=tk.E)
-        self.password_entry.grid(row=1,column=1)
         # ボタンを配置
-        submit_button.grid(row=1, column=2, pady=5)
-        exit_button.grid(row=2, column=1, pady=5)
-        calendar.grid(row=3,column=0)
+        self.frBox1.grid(row=0,column=0, padx=5, pady=5)
+        self.frBox2.grid(row=1,column=0, padx=5, pady=5)
+        submit_button.grid(row=1, column=1, padx=5, pady=5)
+        exit_button.grid(row=2, column=1, padx=5, pady=5)
 
 
     def onSubmit(self):
+        dt=self.calendar.get_date()
+        tstr = dt.strftime('%Y/%m/%d')
+        hh = self.hour.get()
+        mm = self.minute.get()
+        str = tstr + ' ' + hh + ':' + mm
         # メッセージボックス表示
-        messagebox.showinfo("確認",
-            self.username.get()+' / '+self.password.get())
+        messagebox.showinfo("確認", str)

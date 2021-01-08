@@ -9,7 +9,6 @@ class MyFrama02(ttk.Frame):
 
         # グリッドを使ってレイアウト
         # self.grid_rowconfigure(0, weight=1)
-
         # self.grid_columnconfigure(0, weight=1)
 
         # ラベルとテキスト入力を作る
@@ -45,8 +44,8 @@ class MyFrama02(ttk.Frame):
         label2.grid(row=1, column=0, sticky=tk.E)
         self.password_entry.grid(row=1,column=1)
         # ボタンを配置
-        submit_button.grid(row=1, column=2, pady=5)
-        exit_button.grid(row=2, column=1, pady=5)
+        submit_button.grid(row=1, column=2, padx=5, pady=5)
+        exit_button.grid(row=2, column=1, padx=5, pady=5)
 
 
     def onSubmit(self):

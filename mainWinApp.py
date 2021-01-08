@@ -2,7 +2,7 @@ import tkinter as tk
 from LayeredFrame import LayeredFrame
 from MyFrame01 import MyFrama01
 from MyFrame02 import MyFrama02
-from MyFrame03 import MyFrame03
+from MyFrame03 import MyFrama03
 
 
 # アプリケーションクラスだよ
@@ -28,7 +28,7 @@ class Application(tk.Frame):
         # root.main_loopの中で
         # frame.changePage()を呼び出すようにする
         # 最初に page1 の表示をするように
-        self.master.after_idle(layered_frame.changePage, "page1")
+        self.master.after_idle(layered_frame.changePage, "メイン")
 
         # frameに onPageChanged をくっつける
         # 仮想イベント<<StackedFrame_PageChanged>>が発生したら、onPageChaneged()が呼ばれる
@@ -37,27 +37,27 @@ class Application(tk.Frame):
         # page1 はMyFrame01クラスのインスタンスを作り、追加
         page1 = MyFrama01(layered_frame)
         # 第1引数:仮想イベントと 第2引数:処理  を結びつける(bindする)
-        page1.bind("<<Page_Menu>>", layered_frame.toPage("page2"))
-        page1.bind("<<Page_Customer>>", layered_frame.toPage("page3"))
+        page1.bind("<<Page_Menu>>", layered_frame.toPage("テキスト入力"))
+        page1.bind("<<Page_Customer>>", layered_frame.toPage("日付と時刻"))
         page1.bind("<<Page_Reservation>>", layered_frame.toPage("page4"))
         page1.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page1を 追加
-        layered_frame.addPage(page1, "page1")
+        layered_frame.addPage(page1, "メイン")
 
         # # page2 は MyFrame02クラスのインスタンスを作る
         page2 = MyFrama02(layered_frame)
         page2.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page2を 追加
-        layered_frame.addPage(page2, "page2")
+        layered_frame.addPage(page2, "テキスト入力")
 
         # page3 は MyFrame03クラスのインスタンスを作る
-        page3 = MyFrame03(layered_frame)
+        page3 = MyFrama03(layered_frame)
         page3.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page3を 追加
-        layered_frame.addPage(page3, "page3")
+        layered_frame.addPage(page3, "日付と時刻")
 
 
     # pageが変わったら呼ばれる

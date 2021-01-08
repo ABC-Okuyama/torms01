@@ -15,9 +15,10 @@ class MyFrama01(ttk.Frame):
         self.grid_rowconfigure(4, weight=1)
 
         self.grid_columnconfigure(0, weight=1)
+
         # ボタンを4つ作る
-        button01 = ttk.Button(self, text="メニュー一覧", width=30)
-        button02 = ttk.Button(self, text="顧客一覧",    width=30)
+        button01 = ttk.Button(self, text="テキスト入力", width=30)
+        button02 = ttk.Button(self, text="日付と時刻",    width=30)
         button03 = ttk.Button(self, text="予約一覧",    width=30)
         exit_button = ttk.Button(self, text="アプリ終了", width=30)
 
