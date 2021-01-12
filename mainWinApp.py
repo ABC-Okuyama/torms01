@@ -25,10 +25,6 @@ class Application(tk.Frame):
         # https://www.shido.info/py/tkinter2.html
         layered_frame.pack(fill=tk.BOTH, expand=True)
 
-        # root.main_loopの中で
-        # frame.changePage()を呼び出すようにする
-        # 最初に page1 の表示をするように
-        self.master.after_idle(layered_frame.changePage, "メイン")
 
         # frameに onPageChanged をくっつける
         # 仮想イベント<<StackedFrame_PageChanged>>が発生したら、onPageChaneged()が呼ばれる
@@ -66,6 +62,11 @@ class Application(tk.Frame):
         page4.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         layered_frame.addPage(page4, "page4")
+
+        # root.main_loopの中で
+        # frame.changePage()を呼び出すようにする
+        # 最初に page1 の表示をするように
+        self.master.after_idle(layered_frame.changePage, "メイン")
 
 
     # pageが変わったら呼ばれる

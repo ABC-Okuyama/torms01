@@ -2,7 +2,6 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-from tkcalendar import DateEntry
 
 
 class MyFrama04(ttk.Frame):
@@ -69,10 +68,6 @@ class MyFrama04(ttk.Frame):
 
 
     def onSubmit(self):
-        dt=self.calendar.get_date()
-        tstr = dt.strftime('%Y/%m/%d')
-        hh = self.hour.get()
-        mm = self.minute.get()
-        str = tstr + ' ' + hh + ':' + mm
+        str = 'Confirm'
         # メッセージボックス表示
         messagebox.showinfo("確認", str)
