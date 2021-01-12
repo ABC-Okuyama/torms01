@@ -31,11 +31,13 @@ class MyFrama02(ttk.Frame):
 
         # ボタンを作る
         submit_button = ttk.Button(self,text="送信", width=20)
+        back_button = ttk.Button(self,text="戻る", width=20)
         exit_button = ttk.Button(self, text="アプリ終了", width=20)
 
         # ボタンを押された時は onSubmit()を実行
         submit_button["command"] = lambda: self.onSubmit()
         # 任意の名前の仮想イベントを作成しておく
+        back_button["command"] = lambda: self.event_generate("<<Page_Back>>")
         exit_button["command"] = lambda: self.event_generate("<<Page_Exit>>")
 
         # ラベルとテキスト入力を配置
@@ -45,10 +47,13 @@ class MyFrama02(ttk.Frame):
         self.password_entry.grid(row=1,column=1)
         # ボタンを配置
         submit_button.grid(row=1, column=2, padx=5, pady=5)
-        exit_button.grid(row=2, column=1, padx=5, pady=5)
+        back_button.grid(row=2, column=2, padx=5, pady=5)
+        exit_button.grid(row=3, column=2, padx=5, pady=5)
 
 
     def onSubmit(self):
         # メッセージボックス表示
         messagebox.showinfo("確認",
             self.username.get()+' / '+self.password.get())
+        # <<Page_Back>> する
+        self.event_generate("<<Page_Back>>")

@@ -3,7 +3,7 @@ from LayeredFrame import LayeredFrame
 from MyFrame01 import MyFrama01
 from MyFrame02 import MyFrama02
 from MyFrame03 import MyFrama03
-
+from MyFrame04 import MyFrama04
 
 # アプリケーションクラスだよ
 class Application(tk.Frame):
@@ -47,6 +47,7 @@ class Application(tk.Frame):
 
         # # page2 は MyFrame02クラスのインスタンスを作る
         page2 = MyFrama02(layered_frame)
+        page2.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         page2.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page2を 追加
@@ -54,10 +55,17 @@ class Application(tk.Frame):
 
         # page3 は MyFrame03クラスのインスタンスを作る
         page3 = MyFrama03(layered_frame)
+        page3.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         page3.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page3を 追加
         layered_frame.addPage(page3, "日付と時刻")
+
+        page4 = MyFrama04(layered_frame)
+        page4.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
+        page4.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
+
+        layered_frame.addPage(page4, "page4")
 
 
     # pageが変わったら呼ばれる
