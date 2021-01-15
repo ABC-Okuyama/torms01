@@ -4,6 +4,8 @@ from MyFrame01 import MyFrama01
 from MyFrame02 import MyFrama02
 from MyFrame03 import MyFrama03
 from MyFrame04 import MyFrama04
+from CustomerList import CustomerList
+
 
 # アプリケーションクラスだよ
 class Application(tk.Frame):
@@ -34,7 +36,7 @@ class Application(tk.Frame):
         page1 = MyFrama01(layered_frame)
         # 第1引数:仮想イベントと 第2引数:処理  を結びつける(bindする)
         page1.bind("<<Page_Menu>>", layered_frame.toPage("テキスト入力"))
-        page1.bind("<<Page_Customer>>", layered_frame.toPage("日付と時刻"))
+        page1.bind("<<Page_Customer>>", layered_frame.toPage("お客様情報"))
         page1.bind("<<Page_Reservation>>", layered_frame.toPage("page4"))
         page1.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
@@ -50,12 +52,13 @@ class Application(tk.Frame):
         layered_frame.addPage(page2, "テキスト入力")
 
         # page3 は MyFrame03クラスのインスタンスを作る
-        page3 = MyFrama03(layered_frame)
+        # page3 = MyFrama03(layered_frame)
+        page3 = CustomerList(layered_frame)
         page3.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         page3.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page3を 追加
-        layered_frame.addPage(page3, "日付と時刻")
+        layered_frame.addPage(page3, "お客様情報")
 
         page4 = MyFrama04(layered_frame)
         page4.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
