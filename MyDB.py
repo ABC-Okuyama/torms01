@@ -20,7 +20,7 @@ class MyDB:
     # SQL文の実行 (パラメータなし)
     def customer_query(self):
         # excexute sql
-        sqlStatement = 'select * from customers'
+        sqlStatement = 'select customer_id, customer_name, furigana, telno, mailaddress from customers'
         self.cur = self.conn.cursor()
         self.cur.execute(sqlStatement)
         results = self.cur.fetchall()

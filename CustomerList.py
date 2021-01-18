@@ -34,16 +34,18 @@ class CustomerList(ttk.Frame):
         # TreeView (ListBox)
         self.tree = ttk.Treeview(self.frBox)
         # 列を作成（4列）
-        self.tree["columns"] = ('customer_id', 'customer_name', 'telno', 'mailaddress')
+        self.tree["columns"] = ('customer_id', 'customer_name', 'furigana','telno', 'mailaddress')
         # ヘッダーの設定    tree.column(2,width=100)
         self.tree["show"] = "headings"
         self.tree.heading('customer_id', text="ID")
         self.tree.heading('customer_name', text="氏名")
+        self.tree.heading('furigana', text="ふりがな")
         self.tree.heading('telno', text="電話番号")
         self.tree.heading('mailaddress', text="メールアドレス")
         # 各列の幅設定
         self.tree.column('customer_id', width=40)
         self.tree.column('customer_name',width=80)
+        self.tree.column('furigana',width=120)
         self.tree.column('telno',width=100)
         self.tree.column('mailaddress',width=180)
 
@@ -57,7 +59,7 @@ class CustomerList(ttk.Frame):
         # 表にデータを入れる
         for i in range(len(self.results)):
             rec = self.results[i]
-            self.tree.insert("", "end", values=(rec[0], rec[1], rec[2], rec[3]))
+            self.tree.insert("", "end", values=(rec[0], rec[1], rec[2], rec[3], rec[4]))
 
         # TreeView
         # 項目を選択したら、on_tree_select()が呼ばれるようにする
