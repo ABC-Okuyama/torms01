@@ -13,6 +13,7 @@ class MyFrama01(ttk.Frame):
         self.grid_rowconfigure(2, weight=1)
         self.grid_rowconfigure(3, weight=1)
         self.grid_rowconfigure(4, weight=1)
+        self.grid_rowconfigure(5, weight=1)
 
         self.grid_columnconfigure(0, weight=1)
 
@@ -21,7 +22,7 @@ class MyFrama01(ttk.Frame):
         button02 = ttk.Button(self, text="お客様情報", width=30)
         #button02 = ttk.Button(self, text="日付と時刻",    width=30)
         button03 = ttk.Button(self, text="予約一覧",    width=30)
-        button04 = ttk.Button(self, text="メニュー一覧",    width=30)
+        button04 = ttk.Button(self, text="メニュー一覧", width=30)
 
         exit_button = ttk.Button(self, text="アプリ終了", width=30)
 

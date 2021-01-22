@@ -2,10 +2,9 @@ import tkinter as tk
 from LayeredFrame import LayeredFrame
 from MyFrame01 import MyFrama01
 from MyFrame02 import MyFrama02
-from MyFrame03 import MyFrama03
 from MyFrame04 import MyFrama04
-from MenuList import MenuList
 from CustomerList import CustomerList
+from OrderMenuList import OrderMenuList
 
 
 # アプリケーションクラスだよ
@@ -27,7 +26,6 @@ class Application(tk.Frame):
         # 以下 参照のこと
         # https://www.shido.info/py/tkinter2.html
         layered_frame.pack(fill=tk.BOTH, expand=True)
-
 
         # frameに onPageChanged をくっつける
         # 仮想イベント<<StackedFrame_PageChanged>>が発生したら、onPageChaneged()が呼ばれる
@@ -53,8 +51,7 @@ class Application(tk.Frame):
         # frameに page2を 追加
         layered_frame.addPage(page2, "テキスト入力")
 
-        # page3 は MyFrame03クラスのインスタンスを作る
-        # page3 = MyFrama03(layered_frame)
+        # page3 は CustomerListクラスのインスタンスを作る
         page3 = CustomerList(layered_frame)
         page3.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         page3.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
@@ -62,11 +59,13 @@ class Application(tk.Frame):
         # frameに page3を 追加
         layered_frame.addPage(page3, "お客様情報")
 
-        pageMenu = MenuList(LayeredFrame)
+        # pageMenu は MenuListクラスのインスタンスを作る
+        pageMenu = OrderMenuList(LayeredFrame)
         pageMenu.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         pageMenu.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
-        layered_frame.addPage(pageMenu, "ViewMenu")
 
+        # frameに pageMenuを追加
+        layered_frame.addPage(pageMenu, "viewMenu")
 
         page4 = MyFrama04(layered_frame)
         page4.bind("<<Page_Back>>", layered_frame.toPage("メイン"))

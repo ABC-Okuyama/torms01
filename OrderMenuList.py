@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class MenuList(ttk.Frame):
+class OrderMenuList(ttk.Frame):
 
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
@@ -19,7 +19,7 @@ class MenuList(ttk.Frame):
         # 下地のframe: frBoxを作る
         self.frBox = tk.Frame(self)
 
-        # 下地のfrBoxにTreeViewをセットアップする
+        # 下地のfrBoxにcomboBoxをセットアップする
         self.setup_kindComboBox()
 
         # Frameを配置
