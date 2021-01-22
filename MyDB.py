@@ -27,6 +27,25 @@ class MyDB:
         self.cur.close()
         return results # 結果を返す
 
+    # SQL文の実行 (パラメータなし)
+    def kind_query(self):
+        # excexute sql
+        sqlStatement = 'select k_code, k_name from kind_table'
+        self.cur = self.conn.cursor()
+        self.cur.execute(sqlStatement)
+        results = self.cur.fetchall()
+        self.cur.close()
+        return results # 結果を返す
+
+    # SQL文の実行 (パラメータなし)
+    def original_menu_query(self, k_code):
+        # excexute sql
+        sqlStatement = 'select original_menu_id, original_menu_name, standard_price from original_menu where k_code = %s'
+        self.cur = self.conn.cursor()
+        self.cur.execute(sqlStatement, (k_code,))
+        results = self.cur.fetchall()
+        self.cur.close()
+        return results # 結果を返す
 
     # DBのクローズ
     def close(self):

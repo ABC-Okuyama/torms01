@@ -21,12 +21,15 @@ class MyFrama01(ttk.Frame):
         button02 = ttk.Button(self, text="お客様情報", width=30)
         #button02 = ttk.Button(self, text="日付と時刻",    width=30)
         button03 = ttk.Button(self, text="予約一覧",    width=30)
+        button04 = ttk.Button(self, text="メニュー一覧",    width=30)
+
         exit_button = ttk.Button(self, text="アプリ終了", width=30)
 
         # 任意の名前の仮想イベントを作成しておく
         button01["command"] = lambda: self.event_generate("<<Page_Menu>>")
         button02["command"] = lambda: self.event_generate("<<Page_Customer>>")
         button03["command"] = lambda: self.event_generate("<<Page_Reservation>>")
+        button04["command"] = lambda: self.event_generate("<<Page_ViewMenu>>")
         exit_button["command"] = lambda: self.event_generate("<<Page_Exit>>")
 
         # Labelを作成して 0行目、0列目 (2列分の大きさ)
@@ -35,4 +38,6 @@ class MyFrama01(ttk.Frame):
         button01.grid(row=1, column=0, pady=5)
         button02.grid(row=2, column=0, pady=5)
         button03.grid(row=3, column=0, pady=5)
-        exit_button.grid(row=4, column=0, pady=5)
+        button04.grid(row=4, column=0, pady=5)
+
+        exit_button.grid(row=5, column=0, pady=5)

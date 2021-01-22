@@ -4,6 +4,7 @@ from MyFrame01 import MyFrama01
 from MyFrame02 import MyFrama02
 from MyFrame03 import MyFrama03
 from MyFrame04 import MyFrama04
+from MenuList import MenuList
 from CustomerList import CustomerList
 
 
@@ -38,6 +39,7 @@ class Application(tk.Frame):
         page1.bind("<<Page_Menu>>", layered_frame.toPage("テキスト入力"))
         page1.bind("<<Page_Customer>>", layered_frame.toPage("お客様情報"))
         page1.bind("<<Page_Reservation>>", layered_frame.toPage("page4"))
+        page1.bind("<<Page_ViewMenu>>", layered_frame.toPage("viewMenu"))
         page1.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 
         # frameに page1を 追加
@@ -59,6 +61,12 @@ class Application(tk.Frame):
 
         # frameに page3を 追加
         layered_frame.addPage(page3, "お客様情報")
+
+        pageMenu = MenuList(LayeredFrame)
+        pageMenu.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
+        pageMenu.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
+        layered_frame.addPage(pageMenu, "ViewMenu")
+
 
         page4 = MyFrama04(layered_frame)
         page4.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
