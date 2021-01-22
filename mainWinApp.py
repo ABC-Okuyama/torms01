@@ -70,7 +70,7 @@ class Application(tk.Frame):
         page4 = MyFrama04(layered_frame)
         page4.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         page4.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
-
+        #
         layered_frame.addPage(page4, "page4")
 
         # root.main_loopの中で

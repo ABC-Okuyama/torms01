@@ -5,14 +5,14 @@ from tkinter import ttk
 
 class OrderMenuList(ttk.Frame):
 
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
+    def __init__(self,  *args, **kw):
+        # super().__init__(*args, **kw)
 
         # Load Data from Database
         self.results = self.load_Kind()
 
         # Buttonを作る
-        back_button = ttk.Button(self, text="メニューに戻る")
+        back_button = tk.Button(self, text="メニューに戻る")
         # 任意の名前の仮想イベントを作成しておく
         back_button["command"] = lambda: self.event_generate("<<Page_Back>>")
 
