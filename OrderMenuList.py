@@ -4,9 +4,8 @@ from tkinter import ttk
 
 
 class OrderMenuList(ttk.Frame):
-
     def __init__(self,  *args, **kw):
-        # super().__init__(*args, **kw)
+        super().__init__(*args, **kw)
 
         # Load Data from Database
         self.results = self.load_Kind()
