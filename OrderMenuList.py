@@ -136,18 +136,25 @@ class OrderMenuList(ttk.Frame):
     # ComboBox 項目選択された時の処理
     def on_orgMenu_select(self,event):
         print("selected items:")
+        self.selectRec['text'] =''
         for item in self.orgMenu.selection():
+            self.selectRec['text'] = str(self.orgMenu.item(item)['values'])
             print(self.orgMenu.item(item)['values'])  # for Debug
 
 
     def setup_BoxBtn(self):
+        self.selectRec = ttk.Label(self.frBoxBtn,text="",width=10)
+        label = ttk.Label(self.frBoxBtn,text="提供数",width=5)
+        self.availableCount = ttk.Entry(self.frBoxBtn,width=20)
         insert_button = tk.Button(self.frBoxBtn, text=" 追加 [↓] ")
         insert_button["command"] = lambda: self.insert_menu()
         delete_button = tk.Button(self.frBoxBtn, text=" 削除 [↓] ")
         delete_button["command"] = lambda: self.delete_menu()
+
+        self.selectRec.pack(side=tk.LEFT, fill=tk.Y)
+        label.pack(side=tk.LEFT, fill=tk.Y)
         insert_button.pack(side=tk.LEFT, fill=tk.Y)
         delete_button.pack(side=tk.LEFT, fill=tk.Y)
-
 
 
     def insert_menu(self):
@@ -175,7 +182,7 @@ class OrderMenuList(ttk.Frame):
 
         # 各列の幅設定
         self.orderMenutree.column('order_menu_id', width=40)
-        self.orderMenutree.column('order_date',width=80)
+        self.orderMenutree.column('order_date',width=100)
         self.orderMenutree.column('original_menu_id',width=40)
         self.orderMenutree.column('price',width=60)
         self.orderMenutree.column('order_available',width=60)
@@ -200,6 +207,7 @@ class OrderMenuList(ttk.Frame):
         print("selected items:")
         for item in self.orderMenutree.selection():
             print(self.orderMenutree.item(item)['values'])  # for Debug
+
 
     # データベースからデータをロード
     # 種別

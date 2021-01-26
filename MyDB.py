@@ -27,6 +27,7 @@ class MyDB:
         self.cur.close()
         return results # 結果を返す
 
+
     # SQL文の実行 (パラメータなし)
     def kind_query(self):
         # excexute sql
@@ -37,6 +38,7 @@ class MyDB:
         self.cur.close()
         return results # 結果を返す
 
+
     # SQL文の実行 (パラメータなし)
     def original_menu_query(self, k_code):
         # excexute sql
@@ -46,6 +48,7 @@ class MyDB:
         results = self.cur.fetchall()
         self.cur.close()
         return results # 結果を返す
+
 
     # DBのクローズ
     def close(self):
