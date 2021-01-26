@@ -33,7 +33,7 @@ class CustomerList(ttk.Frame):
 
         # TreeView (ListBox)
         self.tree = ttk.Treeview(self.frBox)
-        # 列を作成（4列）
+        # 列を作成（5列）
         self.tree["columns"] = ('customer_id', 'customer_name', 'furigana','telno', 'mailaddress')
         # ヘッダーの設定    tree.column(2,width=100)
         self.tree["show"] = "headings"

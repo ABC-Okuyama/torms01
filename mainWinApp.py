@@ -12,7 +12,7 @@ class Application(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         # Windowの大きさを指定
-        self.master.geometry("600x400")
+        self.master.geometry("800x600")
         self.create_windows()
 
 
@@ -60,7 +60,7 @@ class Application(tk.Frame):
         layered_frame.addPage(page3, "お客様情報")
 
         # pageMenu は MenuListクラスのインスタンスを作る
-        pageMenu = OrderMenuList(LayeredFrame)
+        pageMenu = OrderMenuList(layered_frame)
         pageMenu.bind("<<Page_Back>>", layered_frame.toPage("メイン"))
         pageMenu.bind("<<Page_Exit>>", lambda _: self.master.quit())  # アプリ終了
 

@@ -40,7 +40,7 @@ class MyDB:
     # SQL文の実行 (パラメータなし)
     def original_menu_query(self, k_code):
         # excexute sql
-        sqlStatement = 'select original_menu_id, original_menu_name, standard_price from original_menu where k_code = %s'
+        sqlStatement = 'select original_menu_id, original_menu_name, k_code, standard_price from original_menu where k_code = %s'
         self.cur = self.conn.cursor()
         self.cur.execute(sqlStatement, (k_code,))
         results = self.cur.fetchall()
